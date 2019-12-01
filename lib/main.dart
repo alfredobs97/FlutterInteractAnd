@@ -52,9 +52,15 @@ class _MyHomePageState extends State<MyHomePage> {
               
               child: ListView(
                 children: <Widget>[
-                  Container(
-                    height: MediaQuery.of(context).size.height / 4,
-                    color: Colors.blue,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        color: Colors.blue,
+                      ),
+                    ),
                   ),
                   Container(
                     height: MediaQuery.of(context).size.height / 4,
