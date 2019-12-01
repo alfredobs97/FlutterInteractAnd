@@ -30,7 +30,23 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height / 3,
-              color: Colors.red,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundImage: NetworkImage('https://cdn.icon-icons.com/icons2/1904/PNG/512/profile_121261.png'),
+                    backgroundColor: Colors.yellow,
+                    radius: MediaQuery.of(context).size.height / 10,
+                  ),
+                  Text('John Interact', style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold
+                  ),),
+                  Text('Mi Lista de Regalos', style: TextStyle(
+                    fontSize: 20
+                  ),)
+                ],
+              ),
             ),
             Expanded(
               
