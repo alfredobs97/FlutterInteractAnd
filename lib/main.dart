@@ -59,6 +59,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                         height: MediaQuery.of(context).size.height / 4,
                         color: Colors.blue,
+                        child: Column(
+                          children: <Widget>[
+                            Image.network('https://p7.hiclipart.com/preview/172/844/1010/apple-watch-series-2-apple-watch-series-3-pebble-apple-white-smart-watch.jpg',
+                            height: 200,),
+                            Text('Apple Watch', style: TextStyle(
+                              fontSize: 20
+                              ),)
+                          ],
+                        ),
                       ),
                     ),
                   ),
