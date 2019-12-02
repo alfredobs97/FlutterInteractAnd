@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterinteractand/gift.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,36 +39,44 @@ class _MyHomePageState extends State<MyHomePage> {
                     backgroundColor: Colors.yellow,
                     radius: MediaQuery.of(context).size.height / 10,
                   ),
-                  Text('John Interact', style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold
-                  ),),
-                  Text('Mi Lista de Regalos', style: TextStyle(
-                    fontSize: 20
-                  ),)
+                  Text(
+                    'John Interact',
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Mi Lista de Regalos',
+                    style: TextStyle(fontSize: 20),
+                  )
                 ],
               ),
             ),
             Expanded(
-              
               child: ListView(
                 children: <Widget>[
-                  Container(
-                    height: MediaQuery.of(context).size.height / 4,
-                    color: Colors.blue,
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height / 4,
-                    color: Colors.green,
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height / 4,
-                    color: Colors.indigo,
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height / 4,
-                    color: Colors.limeAccent,
-                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Gift(
+                          img:
+                              'https://p7.hiclipart.com/preview/172/844/1010/apple-watch-series-2-apple-watch-series-3-pebble-apple-white-smart-watch.jpg',
+                          nameGift: 'Apple Watch')),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Gift(
+                          img:
+                              'https://lh3.googleusercontent.com/wEpdmU0qYb6-FPLeAwhPGpOG9x9YNz5bXKy1DiLled1xr5HtqwFYAUGIfnr7nNgoKN20WhBQTTs1XoC9aLDUDXx1VkjqEAWgLoaSXWbyek3pkltmYDRaNgPvmcswzZFUg95qDYcURfo=w400',
+                          nameGift: 'Dash')),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Gift(
+                          img:
+                              'https://rlv.zcache.com/flutter_come_to_the_dart_side_dark_shirts_t_shirt-r5513c2ea71bf4834b909491a47db1f61_k2gm8_540.jpg',
+                          nameGift: 'Flutter T-shirt')),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Gift(
+                          img:
+                              'https://www.sicos.es/wp-content/uploads/2019/08/macbook-pro-15-2019-gris-espacial.png',
+                          nameGift: 'Macbook pro 2019')),
                 ],
               ),
             )
@@ -75,8 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-        },
+        onPressed: () => {},
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
