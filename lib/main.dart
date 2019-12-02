@@ -84,8 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.store),
+        elevation: 12.0,
+        backgroundColor: Colors.red,
         onPressed: () => {},
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
