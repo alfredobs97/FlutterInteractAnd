@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterinteractand/gift.dart';
+import 'shop.dart';
 
 void main() => runApp(MyApp());
 
@@ -74,8 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Gift(
-                          img:
-                              'https://www.sicos.es/wp-content/uploads/2019/08/macbook-pro-15-2019-gris-espacial.png',
+                          img: 'https://www.sicos.es/wp-content/uploads/2019/08/macbook-pro-15-2019-gris-espacial.png',
                           nameGift: 'Macbook pro 2019')),
                 ],
               ),
@@ -84,12 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.store),
-        elevation: 12.0,
-        backgroundColor: Colors.red,
-        onPressed: () => {},
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // This trailing comma makes auto-formatting nicer for build methods.
+          child: Icon(Icons.store),
+          elevation: 12.0,
+          backgroundColor: Colors.red,
+          onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context) => Shop()))}),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.centerFloat, // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
