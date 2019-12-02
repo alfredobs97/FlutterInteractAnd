@@ -10,6 +10,13 @@ class _ShopState extends State<Shop> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.green,
+      child: MaterialButton(
+        child: Text('Pulsa aquí para volver'),
+        color: Colors.red,
+        onPressed: () => {
+          Navigator.pop(context)
+        },
+      ),
     );
   }
 }
