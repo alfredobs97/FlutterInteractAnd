@@ -8,14 +8,18 @@ class Shop extends StatefulWidget {
 class _ShopState extends State<Shop> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
-      child: MaterialButton(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tienda de regalos'),
+      ),
+      body: Center(
+        child: MaterialButton(
         child: Text('Pulsa aquí para volver'),
         color: Colors.red,
         onPressed: () => {
           Navigator.pop(context)
         },
+      ),
       ),
     );
   }
