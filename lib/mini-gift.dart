@@ -19,32 +19,38 @@ class _MiniGiftState extends State<MiniGift> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Expanded(
-                      child: ClipRRect(
+            child: ClipRRect(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                child: Image.network(widget.img, fit: BoxFit.fill),
+              child: Image.network(widget.img, fit: BoxFit.fill),
             ),
           ),
           ClipRRect(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
             child: Container(
               color: Colors.blue,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text(
-                    widget.nameGift,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.favorite),
-                    color: widget.isSelected ? Colors.red : Colors.white,
-                    onPressed: () {
-                      setState(() {
-                        widget.isSelected ? widget.isSelected = false : widget.isSelected = true;
-                      });
-                    },
-                  )
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                      widget.nameGift,
+                      overflow: TextOverflow.clip,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.favorite),
+                      color: widget.isSelected ? Colors.red : Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          widget.isSelected ? widget.isSelected = false : widget.isSelected = true;
+                        });
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           ),
