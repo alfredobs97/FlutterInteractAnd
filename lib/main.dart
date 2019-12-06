@@ -23,6 +23,11 @@ class MyApp extends StatelessWidget {
        iconTheme: IconThemeData(color: Colors.indigo[200], size: 40),
        floatingActionButtonTheme: FloatingActionButtonThemeData(
          backgroundColor: Colors.red[400],
+       ),
+       textTheme: TextTheme(
+         body1: TextStyle(
+           color: Colors.blueGrey
+         )
        )
       ),
       home: MyHomePage(),
@@ -66,9 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundImage: NetworkImage('https://cdn.icon-icons.com/icons2/1904/PNG/512/profile_121261.png'),
-                    backgroundColor: Colors.yellow,
-                    radius: MediaQuery.of(context).size.height / 20,
+                      radius: MediaQuery.of(context).size.height / 16,
+                      child: CircleAvatar(
+                      backgroundImage: AssetImage('assets/dash.png'),
+                      radius: MediaQuery.of(context).size.height / 20,
+                    ),
                   ),
                   Text(
                     'MY SANTA´S LIST',
