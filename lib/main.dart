@@ -19,6 +19,19 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  List<Gift> gifts = new List();
+
+  void addGift(String img, String nameGift){
+    print('INSERTO');
+    gifts.add(Gift(img: img, nameGift: nameGift,));
+    print(gifts.length);
+  }
+
+  void removeGift(String img, String nameGift){
+    print('Elimino');
+    gifts.removeWhere((gift) => gift.img == img && gift.nameGift == nameGift);
+    print(gifts.length);
+  }
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -49,32 +62,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Expanded(
-              child: ListView(
-                children: <Widget>[
-                  Padding(
+              child: ListView.builder(
+                itemCount: widget.gifts.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Gift(
-                          img:
-                              'https://p7.hiclipart.com/preview/172/844/1010/apple-watch-series-2-apple-watch-series-3-pebble-apple-white-smart-watch.jpg',
-                          nameGift: 'Apple Watch')),
-                  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Gift(
-                          img:
-                              'https://lh3.googleusercontent.com/wEpdmU0qYb6-FPLeAwhPGpOG9x9YNz5bXKy1DiLled1xr5HtqwFYAUGIfnr7nNgoKN20WhBQTTs1XoC9aLDUDXx1VkjqEAWgLoaSXWbyek3pkltmYDRaNgPvmcswzZFUg95qDYcURfo=w400',
-                          nameGift: 'Dash')),
-                  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Gift(
-                          img:
-                              'https://rlv.zcache.com/flutter_come_to_the_dart_side_dark_shirts_t_shirt-r5513c2ea71bf4834b909491a47db1f61_k2gm8_540.jpg',
-                          nameGift: 'Flutter T-shirt')),
-                  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Gift(
-                          img: 'https://www.sicos.es/wp-content/uploads/2019/08/macbook-pro-15-2019-gris-espacial.png',
-                          nameGift: 'Macbook pro 2019')),
-                ],
+                      child: Gift(img: widget.gifts[index].img, nameGift: widget.gifts[index].nameGift));
+                },
               ),
             )
           ],
@@ -84,7 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Icon(Icons.store),
           elevation: 12.0,
           backgroundColor: Colors.red,
-          onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context) => Shop()))}),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Shop(addGift: widget.addGift, removeGift: widget.removeGift))).then((_){
+              setState(() {});
+            });
+          }),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.centerFloat, // This trailing comma makes auto-formatting nicer for build methods.
     );

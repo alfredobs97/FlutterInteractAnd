@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class MiniGift extends StatefulWidget {
   final String img;
   final String nameGift;
-  bool isSelected;
+  bool isSelected = false;
+  final Function addGift;
+  final Function removeGift;
 
-  MiniGift({this.img, this.nameGift, this.isSelected});
+  MiniGift({this.img, this.nameGift, this.addGift, this.removeGift});
 
   @override
   _MiniGiftState createState() => _MiniGiftState();
@@ -45,7 +47,9 @@ class _MiniGiftState extends State<MiniGift> {
                       color: widget.isSelected ? Colors.red : Colors.white,
                       onPressed: () {
                         setState(() {
+                          widget.isSelected ? widget.removeGift(widget.img, widget.nameGift) : widget.addGift(widget.img, widget.nameGift);
                           widget.isSelected ? widget.isSelected = false : widget.isSelected = true;
+                          
                         });
                       },
                     )
