@@ -21,17 +21,21 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   List<Gift> gifts = new List();
 
-  void addGift(String img, String nameGift){
+  void addGift(String img, String nameGift) {
     print('INSERTO');
-    gifts.add(Gift(img: img, nameGift: nameGift,));
+    gifts.add(Gift(
+      img: img,
+      nameGift: nameGift,
+    ));
     print(gifts.length);
   }
 
-  void removeGift(String img, String nameGift){
+  void removeGift(String img, String nameGift) {
     print('Elimino');
     gifts.removeWhere((gift) => gift.img == img && gift.nameGift == nameGift);
     print(gifts.length);
   }
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -66,8 +70,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemCount: widget.gifts.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Gift(img: widget.gifts[index].img, nameGift: widget.gifts[index].nameGift));
+                    padding: const EdgeInsets.all(8.0),
+                    child: Dismissible(
+                      key: ValueKey(widget.gifts[index]),
+                      background: Container(
+                        color: Colors.red,
+                      ),
+                      onDismissed: (direction){
+                        setState(() {
+                          widget.gifts.removeAt(index);
+                        });
+                      },
+                      child: Gift(img: widget.gifts[index].img, nameGift: widget.gifts[index].nameGift),
+                    ),
+                  );
                 },
               ),
             )
@@ -79,7 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
           elevation: 12.0,
           backgroundColor: Colors.red,
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Shop(addGift: widget.addGift, removeGift: widget.removeGift))).then((_){
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Shop(addGift: widget.addGift, removeGift: widget.removeGift))).then((_) {
               setState(() {});
             });
           }),

@@ -12,6 +12,7 @@ class Gift extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(40)),
       child: Container(
         height: MediaQuery.of(context).size.height / 4,
+        width: MediaQuery.of(context).size.width,
         color: Colors.blue,
         child: Column(
           children: <Widget>[
