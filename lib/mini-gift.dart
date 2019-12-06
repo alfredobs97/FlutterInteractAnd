@@ -14,6 +14,8 @@ class MiniGift extends StatefulWidget {
 }
 
 class _MiniGiftState extends State<MiniGift> {
+  ImageIcon noSelect = ImageIcon(AssetImage('assets/gift-transparent.png'));
+  ImageIcon select = ImageIcon(AssetImage('assets/gift-fill.png'));
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,7 +31,7 @@ class _MiniGiftState extends State<MiniGift> {
           ClipRRect(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
             child: Container(
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Row(
@@ -43,8 +45,8 @@ class _MiniGiftState extends State<MiniGift> {
                     ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.favorite),
-                      color: widget.isSelected ? Colors.red : Colors.white,
+                      icon: widget.isSelected ? select : noSelect,
+                      color: Colors.white,
                       onPressed: () {
                         setState(() {
                           widget.isSelected ? widget.removeGift(widget.img, widget.nameGift) : widget.addGift(widget.img, widget.nameGift);
