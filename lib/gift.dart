@@ -17,18 +17,6 @@ class Gift extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(image: NetworkImage(img), fit: BoxFit.fill),
           ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  nameGift,
-                  style: TextStyle(fontSize: 20),
-                ),
-              )
-            ],
-          ),
         ),
         Container(
           height: MediaQuery.of(context).size.height / 4,
@@ -46,6 +34,18 @@ class Gift extends StatelessWidget {
                 Theme.of(context).primaryColor
               ]
             ),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  nameGift,
+                  style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
           ),
         ),
 
