@@ -14,11 +14,13 @@ class _ShopState extends State<Shop> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tienda de regalos'),
+        title: Text('SANTA´S GIFT BAG'),
+        centerTitle: true,
       ),
       body: Center(
           child: GridView.count(
         crossAxisCount: 2,
+        padding: EdgeInsets.all(10),
         children: <Widget>[
           MiniGift(
             img:
@@ -35,11 +37,6 @@ class _ShopState extends State<Shop> {
           )
         ],
       )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          widget.addGift('https://elpais.com/tecnologia/imagenes/2017/09/19/actualidad/1505815835_481570_1505909612_noticia_fotograma.jpg', 'Apple Watch');
-        },
-      ),
     );
   }
 }
