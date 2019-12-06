@@ -31,23 +31,20 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.height / 3,
-              child: Column(
+              height: MediaQuery.of(context).size.height / 5,
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   CircleAvatar(
                     backgroundImage: NetworkImage('https://cdn.icon-icons.com/icons2/1904/PNG/512/profile_121261.png'),
                     backgroundColor: Colors.yellow,
-                    radius: MediaQuery.of(context).size.height / 10,
+                    radius: MediaQuery.of(context).size.height / 20,
                   ),
                   Text(
-                    'John Interact',
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                    'MY SANTA´S LIST',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    'Mi Lista de Regalos',
-                    style: TextStyle(fontSize: 20),
-                  )
+                  Icon(Icons.share)
                 ],
               ),
             ),
