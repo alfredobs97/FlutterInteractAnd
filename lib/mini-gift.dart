@@ -39,19 +39,20 @@ class _MiniGiftState extends State<MiniGift> {
                   children: <Widget>[
                     Expanded(
                       child: Text(
-                      widget.nameGift,
-                      overflow: TextOverflow.clip,
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
+                        widget.nameGift,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
                     ),
                     IconButton(
                       icon: widget.isSelected ? select : noSelect,
                       color: Colors.white,
                       onPressed: () {
                         setState(() {
-                          widget.isSelected ? widget.removeGift(widget.img, widget.nameGift) : widget.addGift(widget.img, widget.nameGift);
-                          widget.isSelected ? widget.isSelected = false : widget.isSelected = true;
-                          
+                          widget.isSelected
+                              ? widget.removeGift(widget.img, widget.nameGift)
+                              : widget.addGift(widget.img, widget.nameGift);
+                          widget.isSelected = widget.isSelected ? false : true;
                         });
                       },
                     )
@@ -63,7 +64,7 @@ class _MiniGiftState extends State<MiniGift> {
         ],
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      elevation: 5,
+      elevation: 10,
       margin: EdgeInsets.all(10),
     );
   }

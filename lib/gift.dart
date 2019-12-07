@@ -9,7 +9,7 @@ class Gift extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(40)),
+      borderRadius: BorderRadius.all(Radius.circular(20)),
       child: Stack(children: [
         Container(
           height: MediaQuery.of(context).size.height / 4,
