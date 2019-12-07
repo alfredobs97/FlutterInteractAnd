@@ -1,15 +1,41 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'mini-gift.dart';
+import 'package:http/http.dart' as http;
 
 class Shop extends StatefulWidget {
   final Function addGift;
   final Function removeGift;
+  List<MiniGift> misRegalos = List();
   Shop({this.addGift, this.removeGift});
   @override
   _ShopState createState() => _ShopState();
 }
 
 class _ShopState extends State<Shop> {
+  Future<List<MiniGift>> getGifts() async {
+    final respuestaJson = await http.get('http://vps675002.ovh.net:81/getGifts').then((response) => jsonDecode(response.body));
+    List<MiniGift> gifts = List();
+    respuestaJson.forEach((gift) {
+      gifts.add(MiniGift(
+        img: gift['img'],
+        nameGift: gift['name'],
+        addGift: widget.addGift,
+        removeGift: widget.removeGift,
+      ));
+    });
+
+    return gifts;
+  }
+
+  void initState() {
+    super.initState();
+    getGifts().then((regalos) {
+      widget.misRegalos = regalos;
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,25 +44,24 @@ class _ShopState extends State<Shop> {
         centerTitle: true,
       ),
       body: Center(
-          child: GridView.count(
-        crossAxisCount: 2,
-        padding: EdgeInsets.all(10),
-        children: <Widget>[
-          MiniGift(
-            img:
-                'https://elpais.com/tecnologia/imagenes/2017/09/19/actualidad/1505815835_481570_1505909612_noticia_fotograma.jpg',
-            nameGift: 'Apple Watch',
-            addGift: widget.addGift,
-            removeGift: widget.removeGift,
-          ),
-          MiniGift(
-            img: 'https://www.apple.com/v/ipad-pro/x/images/meta/og__ek1oqpcwtymq_overview.png',
-            nameGift: 'Ipad Pro',
-            addGift: widget.addGift,
-            removeGift: widget.removeGift,
-          )
-        ],
-      )),
+          child: widget.misRegalos.length < 1
+              ? CircularProgressIndicator()
+              : GridView.builder(
+                  itemCount: widget.misRegalos.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: EdgeInsets.all(10),
+                      child: MiniGift(
+                        img:
+                            widget.misRegalos[index].img,
+                        nameGift: widget.misRegalos[index].nameGift,
+                        addGift: widget.addGift,
+                        removeGift: widget.removeGift,
+                      ),
+                    );
+                  },
+                )),
     );
   }
 }
