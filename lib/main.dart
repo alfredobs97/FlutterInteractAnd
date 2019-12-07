@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterinteractand/gift.dart';
 import 'shop.dart';
+import 'package:share/share.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,24 +12,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mi lista de regalos',
       theme: ThemeData(
-       primaryColor: Colors.blue[200],
-       accentColor: Colors.red[400],
-       backgroundColor: Colors.white,
-       appBarTheme: AppBarTheme(
-         color: Colors.white,
-         elevation: 0,
-         textTheme: TextTheme(title: TextStyle(color: Colors.indigo[200], fontSize: 25)),
-         iconTheme: IconThemeData(color: Colors.indigo[200])
-       ),
-       iconTheme: IconThemeData(color: Colors.indigo[200], size: 40),
-       floatingActionButtonTheme: FloatingActionButtonThemeData(
-         backgroundColor: Colors.red[400],
-       ),
-       textTheme: TextTheme(
-         body1: TextStyle(
-           color: Colors.blueGrey
-         )
-       )
+        primaryColor: Colors.blue[200],
+        accentColor: Colors.red[400],
+        backgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+            color: Colors.white,
+            elevation: 0,
+            textTheme: TextTheme(title: TextStyle(color: Colors.indigo[200], fontSize: 25)),
+            iconTheme: IconThemeData(color: Colors.indigo[200])),
+        iconTheme: IconThemeData(color: Colors.indigo[200], size: 40),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.red[400],
+        ),
+        textTheme: TextTheme(body1: TextStyle(color: Colors.blueGrey)),
       ),
       home: MyHomePage(),
     );
@@ -58,7 +54,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ImageIcon gift = ImageIcon(AssetImage('assets/gift-transparent.png'), size: 20.0,);
+  ImageIcon gift = ImageIcon(
+    AssetImage('assets/gift-transparent.png'),
+    size: 20.0,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,8 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   CircleAvatar(
-                      radius: MediaQuery.of(context).size.height / 16,
-                      child: CircleAvatar(
+                    radius: MediaQuery.of(context).size.height / 16,
+                    child: CircleAvatar(
                       backgroundImage: AssetImage('assets/dash.png'),
                       radius: MediaQuery.of(context).size.height / 20,
                     ),
@@ -81,7 +80,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     'MY SANTA´S LIST',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Icon(Icons.share)
+                  IconButton(
+                    icon: Icon(Icons.share),
+                    iconSize: 40,
+                    onPressed: () {
+                      String misRegalos = 'Hola Santa Dash, quiero estos regalos porque he programado muy bien: \n';
+
+                      widget.gifts.forEach((gift) {
+                        misRegalos += '- ' + gift.nameGift + '\n';
+                      });
+
+                      misRegalos += '¡Muchas gracias Santa Dash!';
+
+                      Share.share(misRegalos, subject: 'Correo para Santa Dash');
+                    },
+                  )
                 ],
               ),
             ),
@@ -96,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       background: Container(
                         color: Colors.red,
                       ),
-                      onDismissed: (direction){
+                      onDismissed: (direction) {
                         setState(() {
                           widget.gifts.removeAt(index);
                         });
